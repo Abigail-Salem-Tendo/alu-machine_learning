@@ -2,7 +2,7 @@
 """This module concatenaates two matrices on the same axis"""
 
 
-def cat_matrices2D(mat1, mat2, axis=o):
+def cat_matrices2D(mat1, mat2, axis=0):
     """This function concatenates matrices"""
     if axis == 0:
         # check if the columns match
