@@ -14,6 +14,9 @@ def cofactor(matrix):
     minor = __import__('1-minor').minor
     size = len(matrix)
     minor_matrix = minor(matrix)
+
+    if len(matrix) == 1:
+        return [[1]]
     cofactor_matrix = []
 
     for row in range(size):

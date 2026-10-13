@@ -12,21 +12,23 @@ def inverse(matrix):
         raise ValueError("matrix must be a non-empty square matrix")
 
     determinant = __import__('0-determinant').determinant
-    adjugate = __import__('3-adjugate').adjugate
-
     det = determinant(matrix)
 
     if det == 0:
         return None
 
+    if len(matrix) == 1:
+        return [[1 / matrix[0][0]]]
+
+    adjugate = __import__('3-adjugate').adjugate
     adj = adjugate(matrix)
-    size = len(matrix)
+
     inverse_matrix = []
 
-    for row in range(size):
+    for row in range(len(matrix)):
         new_row = []
 
-        for column in range(size):
+        for column in range(len(matrix)):
             new_row.append(adj[row][column] / det)
 
         inverse_matrix.append(new_row)

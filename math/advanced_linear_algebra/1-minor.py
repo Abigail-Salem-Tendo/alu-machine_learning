@@ -11,6 +11,9 @@ def minor(matrix):
     if not matrix or any(len(row) != len(matrix) for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
 
+    if len(matrix) == 1:
+        return [[1]]
+
     determinant = __import__('0-determinant').determinant
     size = len(matrix)
     minor_matrix = []
