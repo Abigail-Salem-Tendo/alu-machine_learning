@@ -19,7 +19,8 @@ class Normal:
                 raise ValueError("data must contain multiple values")
 
             mean_val = sum(data) / len(data)
-            variance = sum((x - mean_val) ** 2 for x in data) / len(data)
+            # Using sample variance (ddof=1 -> len(data) - 1)
+            variance = sum((x - mean_val) ** 2 for x in data) / (len(data) - 1)
             stddev_val = variance ** 0.5
 
             self.mean = float(mean_val)
@@ -48,7 +49,6 @@ class Normal:
         sign = 1 if val >= 0 else -1
         val_abs = val if val >= 0 else -val
 
-        # Abramowitz and Stegun approximation coefficients for erf(x)
         p = 0.3275911
         a1 = 0.254829592
         a2 = -0.284496736
@@ -62,3 +62,4 @@ class Normal:
         erf_val = sign * (1.0 - poly * (e ** (-val_abs * val_abs)))
 
         return 0.5 * (1.0 + erf_val)
+    
