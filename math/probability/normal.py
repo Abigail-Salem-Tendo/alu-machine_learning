@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Normal distribution class representation and estimation."""
 
-import numpy as np
-
 
 class Normal:
     """Represents a normal distribution."""
@@ -19,5 +17,9 @@ class Normal:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
 
-            self.mean = float(np.mean(data))
-            self.stddev = float(np.std(data))
+            mean_val = sum(data) / len(data)
+            variance = sum((x - mean_val) ** 2 for x in data) / len(data)
+            stddev_val = variance ** 0.5
+
+            self.mean = float(mean_val)
+            self.stddev = float(stddev_val)
