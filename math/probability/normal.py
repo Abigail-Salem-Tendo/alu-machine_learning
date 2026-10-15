@@ -6,6 +6,7 @@ class Normal:
     """Represents a normal distribution."""
 
     def __init__(self, data=None, mean=0., stddev=1.):
+        """Initialize a Normal distribution instance."""
         if data is None:
             if stddev <= 0:
                 raise ValueError("stddev must be a positive value")
@@ -23,3 +24,11 @@ class Normal:
 
             self.mean = float(mean_val)
             self.stddev = float(stddev_val)
+
+    def z_score(self, x):
+        """Calculates the z-score of a given x-value."""
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        """Calculates the x-value of a given z-score."""
+        return z * self.stddev + self.mean
